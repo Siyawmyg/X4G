@@ -1968,7 +1968,7 @@ LOGIN_HTML = LOGIN_HTML.replace("__LOGO_B64__", LOGO_B64)
 DASHBOARD_HTML = DASHBOARD_HTML.replace("__LOGO_B64__", LOGO_B64)
 
 def get_public_page_html(uuid_key: str) -> str:
-    """صفحه پابلیک ساب v3 — طراحی حرفه‌ای‌تر: لینک کانفیگ پنهان با دکمه نمایش، صفحه‌ی رمز با طراحی ویژه"""
+    """صفحه پابلیک ساب v4 — نسخه کامل با تمام قابلیت‌های بهبودیافته"""
     return f"""<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -2005,7 +2005,7 @@ def get_public_page_html(uuid_key: str) -> str:
 html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:var(--t1);font-size:14px;transition:background .35s,color .35s}}
 .bg-fx{{position:fixed;inset:0;background:radial-gradient(ellipse 70% 45% at 50% -8%,rgba(59,124,246,0.13),transparent 62%),var(--bg);z-index:0;pointer-events:none;transition:background .35s}}
 .grid-fx{{position:fixed;inset:0;background-image:linear-gradient(rgba(96,148,246,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(96,148,246,0.025) 1px,transparent 1px);background-size:46px 46px;z-index:0;pointer-events:none}}
-.wrap{{position:relative;z-index:10;max-width:800px;margin:0 auto;padding:24px 16px 64px}}
+.wrap{{position:relative;z-index:10;max-width:900px;margin:0 auto;padding:24px 16px 64px}}
 .top{{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;gap:10px}}
 .brand{{display:flex;align-items:center;gap:11px;min-width:0}}
 .brand-img{{width:40px;height:40px;border-radius:50%;overflow:hidden;border:1px solid var(--card-b);box-shadow:0 0 14px rgba(139,92,246,.3),0 0 8px rgba(59,130,246,.25);flex-shrink:0}}
@@ -2022,11 +2022,11 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .sub-eyebrow i{{font-size:13px}}
 .sub-name{{font-size:23px;font-weight:800;color:var(--t1);margin-bottom:6px;letter-spacing:-.02em}}
 .sub-desc{{font-size:12.5px;color:var(--t2);line-height:1.8;margin-bottom:14px}}
-.sub-meta-row{{font-size:10.5px;color:var(--t3);margin-bottom:14px;display:flex;align-items:center;gap:6px}}
+.sub-meta-row{{font-size:10.5px;color:var(--t3);margin-bottom:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}}
 .sub-sub-box{{background:var(--accent-d);border:1px solid var(--card-b);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}}
 .sub-sub-url{{font-family:ui-monospace,monospace;font-size:10px;color:var(--accent2);word-break:break-all;flex:1;min-width:140px}}
 
-.stats-bar{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}}
+.stats-bar{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}}
 .stat-card{{background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:16px 17px;transition:.2s}}
 .stat-card:hover{{border-color:var(--card-bh);transform:translateY(-1px)}}
 .stat-label{{font-size:9px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}}
@@ -2041,16 +2041,26 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .copy-all-btn:hover{{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.22)}}
 .copy-all-btn:active{{transform:translateY(0) scale(.98)}}
 
-.cfg-title{{font-size:12px;font-weight:800;color:var(--t2);margin-bottom:13px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.07em}}
+.toolbar{{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}}
+.toolbar-left{{display:flex;align-items:center;gap:8px}}
+.cfg-title{{font-size:12px;font-weight:800;color:var(--t2);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.07em}}
 .cfg-title i{{color:var(--accent);font-size:15px}}
+.search-box{{position:relative;min-width:180px;flex:1}}
+.search-box input{{width:100%;padding:8px 34px 8px 12px;border-radius:10px;border:1px solid var(--card-b);background:var(--card);color:var(--t1);font-family:inherit;font-size:11.5px;outline:none;transition:.15s}}
+.search-box input:focus{{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-d)}}
+.search-box i{{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:13px}}
+.export-btns{{display:flex;gap:5px}}
+.btn-sm{{padding:6px 11px;font-size:10.5px;border-radius:8px}}
+
 .cfg-grid{{display:grid;gap:13px}}
 
-/* ── کارت کانفیگ به‌شکل بلیط دسترسی (signature element) ── */
+/* ── کارت کانفیگ ── */
 .cfg-card{{background:var(--card);border:1px solid var(--card-b);border-radius:18px;transition:all .2s;position:relative;overflow:hidden}}
 .cfg-card:hover{{border-color:var(--card-bh);box-shadow:var(--shadow)}}
 .cfg-top{{padding:17px 19px 15px;position:relative}}
 .cfg-top::after{{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:var(--green)}}
 .cfg-card.inactive .cfg-top::after{{background:var(--red)}}
+.cfg-card.expired .cfg-top::after{{background:var(--amber)}}
 .cfg-head{{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}}
 .cfg-label{{font-size:14.5px;font-weight:700;color:var(--t1)}}
 .cfg-badges{{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}}
@@ -2061,12 +2071,18 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .cfg-status{{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}}
 .cfg-status.ok{{background:var(--green-bg);color:var(--green-t)}}
 .cfg-status.no{{background:var(--red-bg);color:var(--red-t)}}
+.cfg-status.warn{{background:var(--amber-bg);color:var(--amber-t)}}
 .cfg-usage{{margin-bottom:4px}}
 .ubar{{height:6px;border-radius:4px;background:rgba(96,148,246,0.1);overflow:hidden;margin-bottom:5px}}
 .ubar-f{{height:100%;border-radius:4px;transition:width .5s ease}}
 .utxt{{font-size:10px;color:var(--t3);display:flex;justify-content:space-between}}
+.cfg-exp{{font-size:10px;font-weight:700;margin-top:4px;display:flex;align-items:center;gap:4px}}
+.cfg-exp.ok{{color:var(--green-t)}}
+.cfg-exp.warn{{color:var(--amber-t)}}
+.cfg-exp.exp{{color:var(--red-t)}}
+.cfg-note{{font-size:10px;color:var(--t3);margin-top:5px;padding:5px 8px;background:var(--accent-d);border-radius:6px;display:inline-block}}
 
-/* خط جداکننده‌ی بلیطی با دندانه‌های گرد، شبیه پاره‌خط بُرد بلیط */
+/* خط جداکننده */
 .cfg-tear{{position:relative;height:0;border-top:1.5px dashed var(--card-b);margin:0 19px}}
 .cfg-tear::before,.cfg-tear::after{{content:'';position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--bg);transform:translateY(-50%);border:1px solid var(--card-b)}}
 .cfg-tear::before{{right:-28px}}
@@ -2083,6 +2099,10 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .cfg-vless-inner{{overflow:hidden}}
 .cfg-vless{{background:rgba(0,0,0,.22);border:1px solid var(--card-b);border-radius:10px;padding:11px 13px;font-size:9.8px;font-family:ui-monospace,monospace;color:var(--accent2);word-break:break-all;line-height:1.7;margin-top:9px;max-height:90px;overflow-y:auto}}
 [data-theme="light"] .cfg-vless{{background:rgba(46,99,214,.05)}}
+.cfg-details{{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px;padding:8px 10px;background:var(--accent-d);border-radius:8px;font-size:9.5px;color:var(--t3)}}
+.cfg-details-item{{display:flex;align-items:center;gap:4px}}
+.cfg-details-item i{{font-size:11px;color:var(--accent2)}}
+.cfg-details-item span{{font-weight:600;color:var(--t2)}}
 .cfg-actions{{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}}
 .btn{{font-family:inherit;font-size:11.5px;font-weight:700;border-radius:10px;padding:8px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:none;transition:all .15s;white-space:nowrap}}
 .btn i{{font-size:13px}}
@@ -2092,6 +2112,8 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .btn-g:hover{{background:rgba(96,148,246,.2)}}
 .btn-pur{{background:var(--purple-bg);color:var(--purple-t);border:1px solid rgba(157,123,240,.2)}}
 .btn-pur:hover{{background:rgba(157,123,240,.22)}}
+.btn-amber{{background:var(--amber-bg);color:var(--amber-t);border:1px solid rgba(242,163,61,.2)}}
+.btn-amber:hover{{background:rgba(242,163,61,.22)}}
 .conn-chip{{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;padding:3px 8px;border-radius:20px;background:var(--green-bg);color:var(--green-t);font-weight:700}}
 .dot{{width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite}}
 @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.25}}}}
@@ -2124,6 +2146,7 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .toast{{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--card);border:1px solid var(--card-b);color:var(--t1);border-radius:12px;padding:10px 20px;font-size:12.5px;font-weight:600;opacity:0;transition:all .25s;z-index:999;pointer-events:none;display:flex;align-items:center;gap:7px;box-shadow:var(--shadow);white-space:nowrap}}
 .toast.show{{opacity:1;transform:translateX(-50%) translateY(0)}}
 .toast.ok{{border-color:rgba(31,184,126,.35);background:var(--green-bg);color:var(--green-t)}}
+.toast.err{{border-color:rgba(239,68,68,.35);background:var(--red-bg);color:var(--red-t)}}
 
 .qr-modal{{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:600;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:20px}}
 .qr-modal.open{{display:flex}}
@@ -2135,15 +2158,22 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 .footer{{text-align:center;padding-top:28px;font-size:10.5px;color:var(--t3)}}
 .footer a{{color:var(--accent2);font-weight:700}}
 
-@media(max-width:520px){{
+@media(max-width:640px){{
   .stats-bar{{grid-template-columns:1fr 1fr}}
-  .stats-bar .stat-card:nth-child(3){{grid-column:1/-1}}
+  .stats-bar .stat-card:nth-child(3),.stats-bar .stat-card:nth-child(4){{grid-column:auto}}
   .sub-name{{font-size:19px}}
   .copy-all-bar{{flex-direction:column;align-items:stretch}}
   .copy-all-btn{{justify-content:center}}
   .wrap{{padding:16px 12px 50px}}
   .lock-banner{{padding:32px 22px 22px}}
   .lock-form{{padding:20px 22px 26px}}
+  .cfg-details{{grid-template-columns:1fr}}
+  .toolbar{{flex-direction:column;align-items:stretch}}
+  .search-box{{min-width:unset}}
+  .export-btns{{justify-content:flex-start}}
+}}
+@media(max-width:420px){{
+  .stats-bar{{grid-template-columns:1fr}}
 }}
 @keyframes spin{{to{{transform:rotate(360deg)}}}}
 </style>
@@ -2166,7 +2196,6 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
     </div>
     <div class="top-actions">
       <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="تغییر تم"><i class="ti ti-sun" id="theme-icon"></i></button>
-      
     </div>
   </div>
   <div id="root">
@@ -2177,6 +2206,7 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
 <script>
 const UUID_KEY='{uuid_key}';
 let savedPw='';
+let allLinksData=[];
 
 let isDark=localStorage.getItem('x4g-pub-theme')!=='light';
 function applyTheme(dark){{
@@ -2194,10 +2224,30 @@ function toast(msg,type=''){{
 function esc(s){{return String(s||'').replace(/[&<>"']/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[c]))}}
 function fmtB(b){{if(!b||b===0)return '0 B';if(b<1024)return b+' B';if(b<1024**2)return (b/1024).toFixed(1)+' KB';if(b<1024**3)return (b/1024**2).toFixed(2)+' MB';return (b/1024**3).toFixed(2)+' GB'}}
 function toFa(n){{return String(n).replace(/\\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}}
+function daysLeft(exp){{
+  if(!exp)return null;
+  const diff=Math.ceil((new Date(exp)-Date.now())/(864e5));
+  return diff;
+}}
+function expText(exp){{
+  if(!exp)return '<span class="cfg-exp ok"><i class="ti ti-infinity"></i> نامحدود</span>';
+  const d=daysLeft(exp);
+  if(d<=0)return '<span class="cfg-exp exp"><i class="ti ti-calendar-x"></i> منقضی شده</span>';
+  if(d<=3)return '<span class="cfg-exp warn"><i class="ti ti-alert-triangle"></i> '+toFa(d)+' روز مانده</span>';
+  if(d<=7)return '<span class="cfg-exp warn"><i class="ti ti-clock"></i> '+toFa(d)+' روز مانده</span>';
+  return '<span class="cfg-exp ok"><i class="ti ti-calendar-check"></i> '+toFa(d)+' روز مانده</span>';
+}}
 function protoChip(p){{
   if(p==='xhttp-stream-one')return '<span class="proto-chip pc-ultra"><i class="ti ti-bolt"></i> XHTTP ULTRA</span>';
-  if(p&&p.startsWith('xhttp'))return '<span class="proto-chip pc-xhttp">'+esc(p)+'</span>';
+  if(p&&p.startsWith('xhttp'))return '<span class="proto-chip pc-xhttp">'+esc(p).replace('xhttp-','')+'</span>';
   return '<span class="proto-chip pc-ws">VLESS · WS</span>';
+}}
+function statusText(l){{
+  if(!l.active)return '<span class="cfg-status no"><i class="ti ti-circle-x"></i> غیرفعال</span>';
+  if(l.expired)return '<span class="cfg-status warn"><i class="ti ti-alert-triangle"></i> منقضی</span>';
+  const pct=l.limit_bytes===0?0:Math.min(100,l.used_bytes/l.limit_bytes*100);
+  if(pct>=90)return '<span class="cfg-status warn"><i class="ti ti-alert-triangle"></i> نزدیک به اتمام</span>';
+  return '<span class="cfg-status ok"><i class="ti ti-circle-check"></i> فعال</span>';
 }}
 
 function showQR(label,link){{
@@ -2214,6 +2264,48 @@ function toggleLink(i){{
   btn.querySelector('.ltl span').textContent = open ? 'پنهان کردن لینک' : 'نمایش لینک کانفیگ';
 }}
 
+function filterLinks(q){{
+  q=q.trim().toLowerCase();
+  document.querySelectorAll('.cfg-card').forEach(card=>{{
+    const label=card.dataset.label||'';
+    const note=card.dataset.note||'';
+    const visible=!q||label.includes(q)||note.includes(q);
+    card.style.display=visible?'':'none';
+  }});
+}}
+
+function copySubLink(subUrl){{
+  const url=subUrl+(savedPw?'?pw='+encodeURIComponent(savedPw):'');
+  navigator.clipboard.writeText(url).then(()=>toast('لینک ساب کپی شد ✓','ok'));
+}}
+
+function copySubBase64(subUrl){{
+  const url=subUrl+(savedPw?'?pw='+encodeURIComponent(savedPw):'');
+  const b64=btoa(url);
+  navigator.clipboard.writeText(b64).then(()=>toast('لینک ساب (Base64) کپی شد ✓','ok'));
+}}
+
+function exportJSON(){{
+  const links=window._x4gLinks||[];
+  if(!links.length){{toast('کانفیگی برای خروجی نیست','err');return}}
+  const data=links.map(l=>({{label:l.label,vless:l.vless,sub:l.sub}}));
+  navigator.clipboard.writeText(JSON.stringify(data,null,2))
+    .then(()=>toast('JSON کپی شد ✓','ok'));
+}}
+
+function exportYAML(){{
+  const links=window._x4gLinks||[];
+  if(!links.length){{toast('کانفیگی برای خروجی نیست','err');return}}
+  let yaml='# X4G Configs\\n';
+  links.forEach((l,i)=>{{
+    yaml+=`\\n${i+1}:
+  label: ${l.label}
+  vless: ${l.vless}
+  sub: ${l.sub}\\n`;
+  }});
+  navigator.clipboard.writeText(yaml).then(()=>toast('YAML کپی شد ✓','ok'));
+}}
+
 async function loadData(pw=''){{
   const url='/api/public/sub/'+UUID_KEY+(pw?'?pw='+encodeURIComponent(pw):'');
   const r=await fetch(url);
@@ -2226,11 +2318,11 @@ function renderLock(name,errMsg=''){{
       <div class="lock-card">
         <div class="lock-banner">
           <div class="lock-shield"><i class="ti ti-shield-lock"></i></div>
-          <div class="lock-title">${{esc(name)}}</div>
+          <div class="lock-title">${esc(name)}</div>
           <div class="lock-sub">این گروه با رمز محافظت شده. برای دیدن کانفیگ‌ها رمز رو وارد کنید.</div>
         </div>
         <div class="lock-form">
-          <div class="lock-err" id="lock-err">${{errMsg ? '<i class="ti ti-alert-circle"></i> '+esc(errMsg) : ''}}</div>
+          <div class="lock-err" id="lock-err">${errMsg ? '<i class="ti ti-alert-circle"></i> '+esc(errMsg) : ''}</div>
           <div class="lock-field">
             <i class="ti ti-lock lock-lockicon"></i>
             <input class="lock-inp" type="password" id="lock-pw" placeholder="••••••••" autofocus>
@@ -2263,7 +2355,8 @@ async function submitLock(){{
 }}
 
 function renderContent(d){{
-  const activeCount=d.links.filter(l=>l.active).length;
+  allLinksData=d.links;
+  const activeCount=d.links.filter(l=>l.active&&!l.expired).length;
   const baseSubUrl = d.sub_url || (window.location.protocol + '//' + window.location.host + '/sub-group/' + UUID_KEY);
   const subUrl = baseSubUrl + (savedPw ? '?pw=' + encodeURIComponent(savedPw) : '');
 
@@ -2278,17 +2371,24 @@ function renderContent(d){{
   document.getElementById('root').innerHTML=`
     <div class="sub-info">
       <div class="sub-eyebrow"><i class="ti ti-folders"></i> گروه دسترسی</div>
-      <div class="sub-name">${{esc(d.name)}}</div>
-      ${{d.desc ? `<div class="sub-desc">${{esc(d.desc)}}</div>` : ''}}
-      <div class="sub-meta-row"><i class="ti ti-clock"></i> آخرین بروزرسانی: ${{new Date().toLocaleTimeString('fa-IR')}}</div>
+      <div class="sub-name">${esc(d.name)}</div>
+      ${d.desc ? `<div class="sub-desc">${esc(d.desc)}</div>` : ''}
+      <div class="sub-meta-row">
+        <i class="ti ti-clock"></i> آخرین بروزرسانی: ${new Date().toLocaleTimeString('fa-IR')}
+        <span style="margin-right:12px"><i class="ti ti-calendar"></i> ${new Date(d.updated_at||Date.now()).toLocaleDateString('fa-IR')}</span>
+      </div>
       <div class="sub-sub-box">
-        <span class="sub-sub-url">${{esc(subUrl)}}</span>
+        <span class="sub-sub-url">${esc(subUrl)}</span>
         <button class="btn btn-pur" style="padding:7px 12px;font-size:10.5px"
-          onclick="navigator.clipboard.writeText(window._x4gSubUrl).then(()=>toast('لینک ساب کپی شد ✓','ok'))">
+          onclick="copySubLink('${esc(baseSubUrl)}')">
           <i class="ti ti-copy"></i> کپی لینک ساب
         </button>
+        <button class="btn btn-pur" style="padding:7px 12px;font-size:10.5px"
+          onclick="copySubBase64('${esc(baseSubUrl)}')">
+          <i class="ti ti-base64"></i> Base64
+        </button>
         <button class="btn btn-g" style="padding:7px 12px;font-size:10.5px"
-          onclick="showQR(window._x4gSubName + ' — کل گروه', window._x4gSubUrl)">
+          onclick="showQR('${esc(d.name)} — کل گروه', '${esc(subUrl)}')">
           <i class="ti ti-qrcode"></i> QR کل
         </button>
       </div>
@@ -2299,76 +2399,109 @@ function renderContent(d){{
         <div class="copy-all-title"><i class="ti ti-copy"></i> کپی همه‌ی کانفیگ‌ها</div>
         <div class="copy-all-sub">تمام لینک‌های فعال این گروه را یک‌جا کپی کن</div>
       </div>
-      <button class="copy-all-btn" onclick="copyAllConfigs()"><i class="ti ti-clipboard-copy"></i> کپی همه (${{toFa(activeCount)}})</button>
+      <button class="copy-all-btn" onclick="copyAllConfigs()"><i class="ti ti-clipboard-copy"></i> کپی همه (${toFa(activeCount)})</button>
     </div>
 
     <div class="stats-bar">
       <div class="stat-card">
         <div class="stat-label">کانفیگ‌های فعال</div>
-        <div class="stat-val">${{toFa(activeCount)}}</div>
-        <div class="stat-sub">از ${{toFa(d.links.length)}} کانفیگ</div>
+        <div class="stat-val">${toFa(activeCount)}</div>
+        <div class="stat-sub">از ${toFa(d.links.length)} کانفیگ</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">اتصالات زنده</div>
-        <div class="stat-val">${{toFa(d.active_connections)}}</div>
+        <div class="stat-val">${toFa(d.active_connections)}</div>
         <div class="stat-sub" style="color:var(--green-t);display:flex;align-items:center;gap:4px"><span class="dot"></span> آنلاین</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">کل مصرف</div>
-        <div class="stat-val" style="font-size:17px;margin-top:3px">${{esc(d.total_used_fmt)}}</div>
+        <div class="stat-val" style="font-size:17px;margin-top:3px">${esc(d.total_used_fmt)}</div>
         <div class="stat-sub">همه کانفیگ‌ها</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">تاریخ ایجاد</div>
+        <div class="stat-val" style="font-size:14px;margin-top:3px">${new Date(d.created_at||Date.now()).toLocaleDateString('fa-IR')}</div>
+        <div class="stat-sub">${d.has_password ? '🔒 رمزدار' : '🔓 عمومی'}</div>
       </div>
     </div>
 
-    <div class="cfg-title"><i class="ti ti-link"></i> کانفیگ‌ها (${{toFa(d.links.length)}} عدد)</div>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="cfg-title"><i class="ti ti-link"></i> کانفیگ‌ها (${toFa(d.links.length)})</div>
+      </div>
+      <div class="search-box">
+        <i class="ti ti-search"></i>
+        <input type="text" id="search-input" placeholder="جستجو در کانفیگ‌ها..." oninput="filterLinks(this.value)">
+      </div>
+      <div class="export-btns">
+        <button class="btn btn-sm btn-pur" onclick="exportJSON()"><i class="ti ti-file-code"></i> JSON</button>
+        <button class="btn btn-sm btn-pur" onclick="exportYAML()"><i class="ti ti-file-text"></i> YAML</button>
+      </div>
+    </div>
+
     <div class="cfg-grid">
-      ${{d.links.map((l, i) => {{
+      ${d.links.map((l, i) => {{
         const pct = l.limit_bytes === 0 ? 0 : Math.min(100, l.used_bytes / l.limit_bytes * 100);
         const bc  = pct > 90 ? 'var(--red)' : pct > 70 ? 'var(--amber)' : 'var(--green)';
         const lim = l.limit_bytes === 0 ? '∞' : fmtB(l.limit_bytes);
+        const cardCls = !l.active ? 'inactive' : (l.expired ? 'expired' : '');
         return `
-          <div class="cfg-card${{l.active ? '' : ' inactive'}}">
+          <div class="cfg-card ${cardCls}" data-label="${esc(l.label).toLowerCase()}" data-note="${esc((l.note||'').toLowerCase())}">
             <div class="cfg-top">
               <div class="cfg-head">
                 <div>
-                  <div class="cfg-label">${{esc(l.label)}}</div>
+                  <div class="cfg-label">${esc(l.label)}</div>
                   <div class="cfg-badges">
-                    ${{protoChip(l.protocol)}}
-                    ${{l.connections > 0 ? `<span class="conn-chip"><span class="dot"></span> ${{toFa(l.connections)}} اتصال</span>` : ''}}
+                    ${protoChip(l.protocol)}
+                    ${l.connections > 0 ? `<span class="conn-chip"><span class="dot"></span> ${toFa(l.connections)} اتصال</span>` : ''}
+                    ${l.note ? `<span class="conn-chip" style="background:var(--accent-d);color:var(--accent2)"><i class="ti ti-note"></i> ${esc(l.note)}</span>` : ''}
                   </div>
                 </div>
-                <span class="cfg-status ${{l.active ? 'ok' : 'no'}}">${{l.active ? '<i class="ti ti-circle-check"></i> فعال' : '<i class="ti ti-circle-x"></i> غیرفعال'}}</span>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                  ${statusText(l)}
+                  ${expText(l.expires_at)}
+                </div>
               </div>
               <div class="cfg-usage">
-                <div class="ubar"><div class="ubar-f" style="width:${{pct}}%;background:${{bc}}"></div></div>
-                <div class="utxt"><span>${{esc(l.used_fmt)}} مصرف شده</span><span>سهمیه: ${{lim}}</span></div>
+                <div class="ubar"><div class="ubar-f" style="width:${pct}%;background:${bc}"></div></div>
+                <div class="utxt"><span>${esc(l.used_fmt)} مصرف شده</span><span>سهمیه: ${lim}</span></div>
+              </div>
+              <div class="cfg-details">
+                <div class="cfg-details-item"><i class="ti ti-fingerprint"></i> Fingerprint: <span>${esc(l.fingerprint||'chrome')}</span></div>
+                <div class="cfg-details-item"><i class="ti ti-route"></i> پورت: <span>${l.port||443}</span></div>
+                <div class="cfg-details-item"><i class="ti ti-calendar"></i> ساخته شده: <span>${new Date(l.created_at).toLocaleDateString('fa-IR')}</span></div>
+                <div class="cfg-details-item"><i class="ti ti-gauge"></i> سرعت: <span>${l.speed_limit_bytes?((l.speed_limit_bytes*8/1024/1024).toFixed(1)+' Mbps'):'نامحدود'}</span></div>
               </div>
             </div>
             <div class="cfg-tear"></div>
             <div class="cfg-bottom">
-              <button class="cfg-link-toggle" id="vt-${{i}}" onclick="toggleLink(${{i}})">
+              <button class="cfg-link-toggle" id="vt-${i}" onclick="toggleLink(${i})">
                 <span class="ltl"><i class="ti ti-eye"></i> <span>نمایش لینک کانفیگ</span></span>
                 <i class="ti ti-chevron-down"></i>
               </button>
-              <div class="cfg-vless-wrap" id="vw-${{i}}">
+              <div class="cfg-vless-wrap" id="vw-${i}">
                 <div class="cfg-vless-inner">
-                  <div class="cfg-vless">${{esc(l.vless_link)}}</div>
+                  <div class="cfg-vless">${esc(l.vless_link)}</div>
                 </div>
               </div>
               <div class="cfg-actions">
                 <button class="btn btn-p"
-                  onclick="navigator.clipboard.writeText(window._x4gLinks[${{i}}].vless).then(()=>toast('لینک کپی شد ✓','ok'))">
+                  onclick="navigator.clipboard.writeText(window._x4gLinks[${i}].vless).then(()=>toast('لینک کپی شد ✓','ok'))">
                   <i class="ti ti-copy"></i> کپی لینک
                 </button>
                 <button class="btn btn-g"
-                  onclick="showQR(window._x4gLinks[${{i}}].label, window._x4gLinks[${{i}}].vless)">
+                  onclick="showQR(window._x4gLinks[${i}].label, window._x4gLinks[${i}].vless)">
                   <i class="ti ti-qrcode"></i> QR
+                </button>
+                <button class="btn btn-pur btn-sm"
+                  onclick="navigator.clipboard.writeText(window._x4gLinks[${i}].sub).then(()=>toast('ساب کپی شد ✓','ok'))">
+                  <i class="ti ti-rss"></i> ساب
                 </button>
               </div>
             </div>
           </div>
         `;
-      }}).join('')}}
+      }}).join('')}
     </div>
   `;
   setTimeout(() => autoRefresh(), 30000);
@@ -2376,7 +2509,7 @@ function renderContent(d){{
 
 function copyAllConfigs(){{
   const links=window._x4gLinks||[];
-  if(!links.length){{toast('کانفیگی برای کپی نیست','');return}}
+  if(!links.length){{toast('کانفیگی برای کپی نیست','err');return}}
   const text=links.map(l=>l.vless).join('\\n');
   navigator.clipboard.writeText(text).then(()=>toast('همه‌ی '+toFa(links.length)+' کانفیگ کپی شد ✓','ok'));
 }}
